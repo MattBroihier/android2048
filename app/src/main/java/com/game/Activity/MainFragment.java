@@ -1,11 +1,13 @@
 package com.game.Activity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ public class MainFragment extends Fragment {
     private int score = 0;
     private TextView tvScore, tvBestScore;
     private LinearLayout root = null;
+    //private FrameLayout gameContainer;
     private GameView gameView;
     private AnimLayer animLayer = null;
     public static final String SP_KEY_BEST_SCORE = "bestScore";
@@ -46,7 +49,11 @@ public class MainFragment extends Fragment {
         tvScore = (TextView) rootView.findViewById(R.id.tvScore);
         tvBestScore = (TextView) rootView.findViewById(R.id.tvBestScore);
 
+        //gameContainer = (FrameLayout) rootView.findViewById(R.id.gameContainer);
+
+        //LayoutInflater gvInflater = new LayoutInflater(this, gameView, null);;
         gameView = (GameView) rootView.findViewById(R.id.gameView);
+        //gameView = inflater.inflate(((GameView) rootView.findViewById(R.id.gameView)), container, false);
 
         animLayer = (AnimLayer) rootView.findViewById(R.id.animLayer);
 
@@ -97,6 +104,10 @@ public class MainFragment extends Fragment {
 
     public void showBestScore(int s) {
         tvBestScore.setText(s + "");
+    }
+
+    public GameView getGameView() {
+        return gameView;
     }
 
     public AnimLayer getAnimLayer() {

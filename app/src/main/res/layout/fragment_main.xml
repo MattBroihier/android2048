@@ -79,7 +79,8 @@
         <com.game.Utils.GameView
             android:id="@+id/gameView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="visible" />
 
         <!-- 动画控件 -->
 
@@ -87,6 +88,12 @@
             android:id="@+id/animLayer"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <!--<com.game.Utils.GameView-->
+        <!--android:id="@+id/gameView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
     </FrameLayout>
 
 </LinearLayout>

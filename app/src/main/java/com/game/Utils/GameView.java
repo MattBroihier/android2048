@@ -1,40 +1,42 @@
 package com.game.Utils;
 
-
 import android.content.Context;
 import android.graphics.Point;
-import android.media.MediaPlayer;
+//import android.media.MediaPlayer;
 import android.util.AttributeSet;
+//import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.GridLayout;
 
 import com.game.Activity.MainFragment;
-import com.game.Model.Card;
+//import com.game.Model.Card;
+import com.game.Utils.Card;
 import com.game.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class GameView extends LinearLayout {
+public class GameView extends GridLayout {
 
     private Context context;
-    private MediaPlayer player;
+    //private MediaPlayer player;
     private Card[][] cardsMap = new Card[Config.LINES][Config.LINES];
     private List<Point> emptyPoints = new ArrayList<Point>();
 
     public GameView(Context context) {
         super(context);
         this.context = context;
-        player = MediaPlayer.create(context, R.raw.move);
+        //player = MediaPlayer.create(context, R.raw.move);
         initGameView();
     }
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        player = MediaPlayer.create(context, R.raw.move);
+        //player = MediaPlayer.create(context, R.raw.move);
         initGameView();
     }
 
@@ -42,9 +44,18 @@ public class GameView extends LinearLayout {
     //初始化Gameview
     private void initGameView() {
 
-        setOrientation(LinearLayout.VERTICAL);
+//        LayoutInflater inflater = LayoutInflater.from(getContext());
+//        inflater.inflate(R.id.gameView, R.id.gameContainer, this);
+
+        //View view = inflate(getContext(), GameView, null);
+        //addView(view);
+
+        //setOrientation(LinearLayout.VERTICAL);
+        setColumnCount (Config.LINES);
+        setRowCount(Config.LINES);
+        setVisibility(View.VISIBLE);
         setBackgroundColor(0xffbbada0);
-        setOnTouchListener(new OnTouchListener() {
+        setOnTouchListener(new OnTouchListener(){
 
             private float startX
                     ,
@@ -68,18 +79,18 @@ public class GameView extends LinearLayout {
 
                         if (Math.abs(offsetX) > Math.abs(offsetY)) {
                             if (offsetX < -5) {
-                                player.start();
+                                //player.start();
                                 swipeLeft();
                             } else if (offsetX > 5) {
-                                player.start();
+                                //player.start();
                                 swipeRight();
                             }
                         } else {
                             if (offsetY < -5) {
-                                player.start();
+                                //player.start();
                                 swipeUp();
                             } else if (offsetY > 5) {
-                                player.start();
+                                //player.start();
                                 swipeDown();
                             }
                         }
@@ -98,7 +109,7 @@ public class GameView extends LinearLayout {
 
         Config.CARD_WIDTH = (Math.min(w, h) - 10) / Config.LINES;
 
-        addCards(Config.CARD_WIDTH, Config.CARD_WIDTH);
+        //addCards(Config.CARD_WIDTH, Config.CARD_WIDTH);
 
         startGame();
     }
@@ -112,15 +123,24 @@ public class GameView extends LinearLayout {
         LayoutParams lineLp;
 
         for (int y = 0; y < Config.LINES; y++) {
-            line = new LinearLayout(getContext());
-            lineLp = new LayoutParams(-1, cardHeight);
-            addView(line, lineLp);
+            //line = new LinearLayout(getContext());
+            //lineLp = new LayoutParams(-1, cardHeight);
+            //addView(line, lineLp);
 
             for (int x = 0; x < Config.LINES; x++) {
                 c = new Card(getContext());
-                line.addView(c, cardWidth, cardHeight);
+                //line.addView(c, cardWidth, cardHeight);
 
+                //addView(c);
+                //c.setVisibility(View.VISIBLE);
                 cardsMap[x][y] = c;
+            }
+        }
+        //add cards to grid
+        for (int y = 0; y < Config.LINES; y++) {
+            for (int x = 0; x < Config.LINES; x++) {
+                addView(cardsMap[x][y]);
+                this.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -132,6 +152,7 @@ public class GameView extends LinearLayout {
         aty.clearScore();
         aty.showBestScore(aty.getBestScore());
 
+        addCards(Config.LINES, Config.LINES);
 
         for (int y = 0; y < Config.LINES; y++) {
             for (int x = 0; x < Config.LINES; x++) {
@@ -161,9 +182,17 @@ public class GameView extends LinearLayout {
                     .size()));
             cardsMap[p.x][p.y].setNum(Math.random() > 0.1 ? 2 : 4);
 
+            MainFragment.getMainFragment().getGameView();
+
             MainFragment.getMainFragment().getAnimLayer()
                     .createScaleTo1(cardsMap[p.x][p.y]);
         }
+        for (int y = 0; y < Config.LINES; y++) {
+            for (int x = 0; x < Config.LINES; x++) {
+               cardsMap[x][y] .setVisibility(View.VISIBLE);
+            }
+        }
+
     }
 
     //向左移动

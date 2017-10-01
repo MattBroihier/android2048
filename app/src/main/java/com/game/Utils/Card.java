@@ -1,10 +1,9 @@
-package com.game.Model;
+package com.game.Utils;
 
 import android.content.Context;
 import android.text.TextPaint;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;

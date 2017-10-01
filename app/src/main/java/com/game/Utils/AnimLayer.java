@@ -1,6 +1,7 @@
 package com.game.Utils;
 
-import com.game.Model.Card;
+//import com.game.Model.Card;
+import com.game.Utils.Card;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -49,7 +50,7 @@ public class AnimLayer extends FrameLayout {
 				* (toX - fromX), 0, Config.CARD_WIDTH * (toY - fromY));
 
         //设置动画播放速度
- 		ta.setDuration(100);
+ 		ta.setDuration(1500);
 
         //设置动画监听器
 		ta.setAnimationListener(new Animation.AnimationListener() {
