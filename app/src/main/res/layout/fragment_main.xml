@@ -75,6 +75,19 @@
         android:background="@color/gameViewBack">
 
         <!-- 游戏控件 -->
+        <!--<GridLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/gameGrid"-->
+            <!--android:columnCount="4"-->
+            <!--android:rowCount="4">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/gameGridTestView"-->
+                <!--android:text="Hey There"-->
+                <!--/>-->
+
+        <!--</GridLayout>-->
 
         <com.game.Utils.GameView
             android:id="@+id/gameView"
@@ -82,7 +95,7 @@
             android:layout_height="match_parent"
             android:visibility="visible" />
 
-        <!-- 动画控件 -->
+        <!--&lt;!&ndash; 动画控件 &ndash;&gt;-->
 
         <com.game.Utils.AnimLayer
             android:id="@+id/animLayer"

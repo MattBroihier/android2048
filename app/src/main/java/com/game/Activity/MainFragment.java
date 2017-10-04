@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class MainFragment extends Fragment {
     private LinearLayout root = null;
     //private FrameLayout gameContainer;
     private GameView gameView;
+    private GridLayout gameGrid;
     private AnimLayer animLayer = null;
     public static final String SP_KEY_BEST_SCORE = "bestScore";
 
@@ -53,9 +55,15 @@ public class MainFragment extends Fragment {
 
         //LayoutInflater gvInflater = new LayoutInflater(this, gameView, null);;
         gameView = (GameView) rootView.findViewById(R.id.gameView);
+        //gameView.inflate(R.layout.fragment_main, container, false);
+        gameView.setVisibility(View.VISIBLE);
         //gameView = inflater.inflate(((GameView) rootView.findViewById(R.id.gameView)), container, false);
 
+        //gameGrid = (GridLayout) rootView.findViewById(R.id.gameGrid);
+
         animLayer = (AnimLayer) rootView.findViewById(R.id.animLayer);
+
+        //root.addView(gameView);
 
         return rootView;
     }
@@ -74,7 +82,9 @@ public class MainFragment extends Fragment {
     }
 
     public void startGame() {
+        gameView.setVisibility(View.VISIBLE);
         gameView.startGame();
+        gameView.setVisibility(View.VISIBLE);
     }
 
     public void addScore(int s) {
